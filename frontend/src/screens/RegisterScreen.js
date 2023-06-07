@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import TextInput from "../components/common/TextInput";
 import Button from "../components/common/Button";
 import { register } from "../actions/userActions";
-import logo from "../images/fleur-de-lis.svg";
+import logo from "../images/logo.svg";
 
 // TODO: Move classNames to a utility file
 function classNames(...classes) {
@@ -57,7 +57,7 @@ export default function RegisterScreen({ history }) {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-12 shadow sm:rounded-lg sm:px-10">
-          {message && <Message message={message} />}
+          {error && <Message message={message} />}
 
           <form
             className={classNames(message ? "mt-8" : "", "space-y-6")}

@@ -48,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
 export const register =
   (first_name, last_name, email, password) => async (dispatch) => {
     try {
+      console.log("register action");
       dispatch({
         type: USER_REGISTER_REQUEST,
       });
@@ -73,7 +74,11 @@ export const register =
         payload: data,
       });
 
+      console.log("local storage");
+
       localStorage.setItem("userInfo", JSON.stringify(data));
+
+      console.log(localStorage.getItem("userInfo"));
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
