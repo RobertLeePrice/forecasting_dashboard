@@ -17,6 +17,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         serializer = UserSerializerWithToken(self.user).data 
 
+        print('serializer', serializer)
+
         for k, v in serializer.items():
             data[k] = v
 
