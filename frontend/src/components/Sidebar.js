@@ -6,11 +6,11 @@ import {
   ArrowLeftOnRectangleIcon,
   BeakerIcon,
 } from "@heroicons/react/24/solid";
-import logo from "../images/logo.svg";
-import LinkButtonSquare from "../components/common/LinkButtonSquare";
+import logo from "../images/ship-wheel.svg";
+import LinkButtonSquare from "./common/LinkButtonSquare";
 import { logout } from "../actions/userActions";
 
-const Navbar = () => {
+const Sidebar = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -20,9 +20,13 @@ const Navbar = () => {
     dispatch(logout());
   };
   return (
-    <div className="bg-storm px-2 py-2 lg:py-6 flex lg:flex-col justify-between">
+    <div className="bg-storm px-4 py-2 lg:pt-2 lg:pb-6 flex lg:flex-col justify-between">
       <div className="flex-shrink-0">
-        <img className="mx-auto h-7 w-auto" src={logo} alt="Workflow" />
+        <img
+          className="mx-2 my-4 lg:mx-auto h-7 w-auto"
+          src={logo}
+          alt="Wheel"
+        />
       </div>
       <nav className="flex items-center flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
         <LinkButtonSquare to="/" icon={Squares2X2Icon} />
@@ -46,4 +50,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;

@@ -7,7 +7,7 @@ import TextInput from "../components/common/TextInput";
 import Button from "../components/common/Button";
 import { login } from "../actions/userActions";
 import { classNames } from "../helpers/utils";
-import logo from "../images/logo.svg";
+import logo from "../images/ship-wheel.svg";
 
 export default function LoginScreen({}) {
   const [email, setEmail] = useState("");

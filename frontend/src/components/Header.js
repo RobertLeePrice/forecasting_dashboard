@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-full min-h-full mb-4">
+      <div className="w-full mb-4">
         <Disclosure as="nav" className="border-b-2 border-storm shadow-sm">
           {({ open }) => (
             <>

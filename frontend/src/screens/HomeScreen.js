@@ -1,12 +1,42 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Dialog, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  CalendarIcon,
+  ChartPieIcon,
+  DocumentDuplicateIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { ParentSize } from "@visx/responsive";
+
 import Header from "../components/Header";
 import LoadingCard from "../components/LoadingOverlay";
 import Message from "../components/Message";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import Card from "../components/Card";
+
+import ColumnChart from "../components/charts/ColumnChart";
+
+const navigation = [
+  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
+  { name: "Team", href: "#", icon: UsersIcon, current: false },
+  { name: "Projects", href: "#", icon: FolderIcon, current: false },
+  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
+  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
+  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 function HomeScreen() {
   const dispatch = useDispatch();
+
   // const productList = useSelector((state) => state.productList);
   // const { error, loading, products } = productList;
 
@@ -16,73 +46,62 @@ function HomeScreen() {
 
   return (
     <>
-      {/* <Header /> */}
       {/* {loading ? (
         <LoadingCard />
       ) : error ? (
         <Message message={error} />
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {products.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
-        </div>
+        <div></div>
       )} */}
 
-      <div class="flex h-screen overflow-y-hidden bg-zinc-950 min-h-screen justify-center">
+      <div class="flex overflow-y-hidden bg-zinc-950 min-h-screen justify-center">
         <div class="flex-1 flex flex-col lg:space-y-0 lg:flex-row">
-          {/* <!-- Navigation --> */}
+          <Sidebar />
 
-          <Navbar />
-
-          <Header />
-
-          {/* <!-- Content --> */}
-          {/* <div class="flex-1 px-2 sm:px-0">
-            <div class="flex justify-between items-center">
-              <h3 class="text-3xl font-extralight text-white/50">Groups</h3>
-              <div class="inline-flex items-center space-x-2">
-                <a
-                  class="bg-gray-900 text-white/50 p-2 rounded-md hover:text-white smooth-hover"
-                  href="#"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  class="bg-gray-900 text-white/50 p-2 rounded-md hover:text-white smooth-hover"
-                  href="#"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                    />
-                  </svg>
-                </a>
+          <main className="py-8 space-y-8 w-full">
+            <div className="px-4 sm:px-6 lg:px-8 text-white">
+              {/* Start Card Header */}
+              <div className="px-4 py-5 sm:px-6">
+                <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+                  <div className="ml-4 mt-2">
+                    <h1 className="text-3xl font-semibold leading-6 text-white">
+                      Model Performance
+                    </h1>
+                  </div>
+                  <div className="ml-4 mt-2 flex-shrink-0">
+                    <button
+                      type="button"
+                      className="relative inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Test Filter Button
+                    </button>
+                  </div>
+                </div>
               </div>
+              {/* End Card Header */}
             </div>
-          </div> */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded shadow p-4">
+                <h2 className="text-2xl font-bold">Card 1</h2>
+                <ColumnChart width={500} height={300} />
+              </div>
+
+              <div className="bg-white rounded shadow p-4">
+                <h2 className="text-2xl font-bold">Card 2</h2>
+                <ColumnChart width={500} height={300} />
+              </div>
+
+              <div className="bg-white rounded shadow p-4">
+                <h2 className="text-2xl font-bold">Card 3</h2>
+                <p className="mt-2">Hello world</p>
+              </div>
+
+              {/* Add more cards as needed */}
+            </div>
+            <div className="px-4 sm:px-6 lg:px-8 text-white">
+              {/* <Card /> */}
+            </div>
+          </main>
         </div>
       </div>
     </>

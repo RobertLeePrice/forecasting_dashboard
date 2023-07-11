@@ -3,14 +3,16 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 
-export default function App() {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeScreen />} exact />
+        <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<LoginScreen />} />
-        <Route path="/register" element={<RegisterScreen />} />
+        {/* <Route path="/register" element={<RegisterScreen />} /> */}
       </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;
